@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Squidly1408 Rotating Logo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background: #1f1f1f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1200px;
+            overflow: hidden;
+        }
+
+        .scene {
+            transform-style: preserve-3d;
+        }
+
+        .extrude {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            transform-style: preserve-3d;
+            animation: spin 8s linear infinite;
+        }
+
+        .layer {
+            position: absolute;
+            inset: 0;
+            background: url("./image.svg") center / contain no-repeat;
+            transform-style: preserve-3d;
+        }
+
+        /* Front face */
+        .front {
+            transform: translateZ(0);
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+        }
+
+        /* Depth layers */
+        .depth {
+            opacity: 0.9;
+            filter: brightness(0.75);
+        }
+
+        .back {
+            transform: translateZ(-16px);
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scene">
+        <div class="extrude">
+
+            <!-- Front -->
+            <div class="layer front"></div>
+
+            <!-- Thickness -->
+            <div class="layer depth" style="transform: translateZ(-2px);"></div>
+            <div class="layer depth" style="transform: translateZ(-4px);"></div>
+            <div class="layer depth" style="transform: translateZ(-6px);"></div>
+            <div class="layer depth" style="transform: translateZ(-8px);"></div>
+            <div class="layer depth" style="transform: translateZ(-10px);"></div>
+            <div class="layer depth" style="transform: translateZ(-12px);"></div>
+            <div class="layer depth" style="transform: translateZ(-14px);"></div>
+
+            <!-- Front -->
+            <div class="layer back"></div>
+        </div>
+    </div>
+</body>
+
+</html>
